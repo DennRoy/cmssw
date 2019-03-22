@@ -140,8 +140,8 @@ nanoSequenceFS = cms.Sequence(genParticleSequence + particleLevelSequence + nano
 nanoSequenceMC = nanoSequenceFS.copy()
 nanoSequenceMC.insert(nanoSequenceFS.index(nanoSequenceCommon)+1,nanoSequenceOnlyFullSim)
 
-###### Mine for Embedded
-nanoSequence = cms.Sequence(genParticleSequence + nanoMetadata + jetSequence + muonSequence + tauSequence + electronSequence + photonSequence + vertexSequence + isoTrackSequence + linkedObjects + jetTables + muonTables + tauTables + electronTables + photonTables +  globalTables + vertexTables + metTables + simpleCleanerTable + isoTrackTables + triggerObjectTables + l1bits + muonMC + electronMC + photonMC + tauMC +  globalTablesMC + btagWeightTable + genWeightsTable + genParticleTables + lheInfoTable)
+###### nanoSequence for Embedded
+nanoSequence = cms.Sequence(genParticleSequence + nanoSequenceCommon + nanoSequenceOnlyFullSim + muonMC + electronMC + photonMC + tauMC + globalTablesMC + btagWeightTable + genWeightsTable + genParticleTables)
 ######
 
 # modify extraFlagsTable to store ecalBadCalibFilter decision which is re-run with updated bad crystal list for 2017 and 2018 samples
