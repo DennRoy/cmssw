@@ -140,6 +140,10 @@ nanoSequenceFS = cms.Sequence(genParticleSequence + particleLevelSequence + nano
 nanoSequenceMC = nanoSequenceFS.copy()
 nanoSequenceMC.insert(nanoSequenceFS.index(nanoSequenceCommon)+1,nanoSequenceOnlyFullSim)
 
+###### Mine for Embedded
+nanoSequence = cms.Sequence(genParticleSequence + nanoMetadata + jetSequence + muonSequence + tauSequence + electronSequence + photonSequence + vertexSequence + isoTrackSequence + linkedObjects + jetTables + muonTables + tauTables + electronTables + photonTables +  globalTables + vertexTables + metTables + simpleCleanerTable + isoTrackTables + triggerObjectTables + l1bits + muonMC + electronMC + photonMC + tauMC +  globalTablesMC + btagWeightTable + genWeightsTable + genParticleTables + lheInfoTable)
+######
+
 # modify extraFlagsTable to store ecalBadCalibFilter decision which is re-run with updated bad crystal list for 2017 and 2018 samples
 for modifier in run2_nanoAOD_94XMiniAODv1, run2_nanoAOD_94XMiniAODv2, run2_nanoAOD_102Xv1:
     modifier.toModify(extraFlagsTable, variables= cms.PSet())

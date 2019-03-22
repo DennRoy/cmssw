@@ -150,7 +150,7 @@ run2_miniAOD_80XLegacy.toModify(slimmedPhotonsWithUserData.userFloats,
     ecalEnergyPreCorrNew     = cms.InputTag("calibratedPatPhotons80XLegacy","ecalEnergyPreCorr"),
     ecalEnergyPostCorrNew    = cms.InputTag("calibratedPatPhotons80XLegacy","ecalEnergyPostCorr"),
 )
-run2_nanoAOD_94XMiniAODv1.toModify(slimmedPhotonsWithUserData.userFloats,
+run2_nanoAOD_94XMiniAODv2.toModify(slimmedPhotonsWithUserData.userFloats,
     ecalEnergyErrPostCorrNew = cms.InputTag("calibratedPatPhotons94Xv1","ecalEnergyErrPostCorr"),
     ecalEnergyPreCorrNew     = cms.InputTag("calibratedPatPhotons94Xv1","ecalEnergyPreCorr"),
     ecalEnergyPostCorrNew    = cms.InputTag("calibratedPatPhotons94Xv1","ecalEnergyPostCorr"),
@@ -200,7 +200,7 @@ for modifier in run2_nanoAOD_94XMiniAODv2, run2_nanoAOD_94X2016:
     )
 
 #these eras need to make the energy correction, hence the "New"
-for modifier in run2_nanoAOD_94XMiniAODv1, run2_miniAOD_80XLegacy:
+for modifier in run2_nanoAOD_94XMiniAODv2, run2_miniAOD_80XLegacy:
     modifier.toModify(photonTable.variables,
         pt = Var("pt*userFloat('ecalEnergyPostCorrNew')/userFloat('ecalEnergyPreCorrNew')", float, precision=-1, doc="p_{T}"),
         energyErr = Var("userFloat('ecalEnergyErrPostCorrNew')",float,doc="energy error of the cluster from regression",precision=6),
@@ -260,5 +260,5 @@ run2_miniAOD_80XLegacy.toReplaceWith(photonSequence, _with80XScale_sequence)
 
 _with94Xv1Scale_sequence = photonSequence.copy()
 _with94Xv1Scale_sequence.replace(slimmedPhotonsWithUserData, calibratedPatPhotons94Xv1 + slimmedPhotonsWithUserData)
-run2_nanoAOD_94XMiniAODv1.toReplaceWith(photonSequence, _with94Xv1Scale_sequence)
+run2_nanoAOD_94XMiniAODv2.toReplaceWith(photonSequence, _with94Xv1Scale_sequence)
 
